@@ -23,7 +23,6 @@
   app.use(express.static(__dirname + '/public'));
 ```
 
-
 #### 处理请求以及路由配置
 
 ```javascript
@@ -63,7 +62,7 @@
 
 > **`hbs.registerPartials(__dirname + 'views/partials')`**
 
-注册 hbs 组件，以便复用，使用方式 {{> component}}
+注册 hbs 组件，以便复用，使用方式 `{{> component}}`
 
 > **`hbs.registerHelper(func, () => {})`**
 
@@ -101,3 +100,15 @@
 所以，调用 middlewares 的方法就是 app.use()，
 
 当我们需要对请求、响应做处理时，就可以在 next() 之前做文章。
+
+比如说，网站维护升级（看例子）：
+
+```javascript
+  app.use((req, res, next) => {
+    res.render('maintaince.hbs',{message: '网站升级，预计1小时...'})
+  });
+
+  // 放在，express.static() 中间件之前
+```
+
+这时候，你访问任何路径或者资源都会显示升级的通知。

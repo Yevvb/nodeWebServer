@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 // 注册 hbs 所有子组件（复用组件）
@@ -60,6 +62,6 @@ app.get('/bad', (req, res) => {
   })
 });
 
-app.listen(3000, () => {
-  console.log('Open localhost:3000')
+app.listen(port, () => {
+  console.log(`Listen on:${port}`)
 });
